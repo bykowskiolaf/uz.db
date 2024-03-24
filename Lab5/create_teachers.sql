@@ -1,14 +1,18 @@
 drop table if exists teachers;
 
+-- Table for storing teacher information
 create table teachers
 (
-    id      int auto_increment
-        primary key,
-    name    varchar(30)     not null,
-    surname varchar(30)     not null,
-    pesel   Decimal(11)     not null unique check (pesel REGEXP '^[0-9]{11}$'),
-    gender  Enum ('M', 'F') not null,
-    city_id int             null,
+    id      int auto_increment primary key
+        comment 'Unique identifier for each teacher',
+    name    varchar(30)     not null
+        comment 'First name of the teacher',
+    surname varchar(30)     not null
+        comment 'Last name of the teacher',
+    pesel   Decimal(11)     not null unique comment 'PESEL number of the teacher, expected to be unique' check (pesel REGEXP '^[0-9]{11}$'),
+    gender  Enum ('M', 'F') not null
+        comment 'Gender of the teacher',
+    city_id int             null comment 'City of residence of the teacher',
 
     constraint teachers_cities_id_fk
         foreign key (city_id) references cities (id)

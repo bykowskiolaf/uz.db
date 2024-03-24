@@ -1,17 +1,27 @@
 drop table if exists students;
 
+-- Table for storing student information
 create table students
 (
-    id            int auto_increment
-        primary key,
-    index_nr      int             not null unique check (index_nr REGEXP '^[0-9]{6}$'),
-    name          varchar(30)     not null,
-    surname       varchar(30)     not null,
-    pesel         Decimal(11)     not null unique check (pesel REGEXP '^[0-9]{11}$'),
-    date_of_birth Date            not null,
-    gender        Enum ('M', 'F') not null,
-    city_id       int             null references cities (id)
+    id            int auto_increment primary key
+        comment 'Unique identifier for each student',
+    index_nr      int             not null unique comment 'Student index number, expected to be unique' check (index_nr REGEXP '^[0-9]{6}$'),
+    name          varchar(30)     not null
+        comment 'First name of the student',
+    surname       varchar(30)     not null
+        comment 'Last name of the student',
+    pesel         Decimal(11)     not null unique comment 'PESEL number of the student, expected to be unique' check (pesel REGEXP '^[0-9]{11}$'),
+    date_of_birth Date            not null
+        comment 'Date of birth of the student',
+    gender        Enum ('M', 'F') not null
+        comment 'Gender of the student',
+    city_id       int             null
+        comment 'City of residence of the student',
+
+    constraint students_cities_id_fk
+        foreign key (city_id) references cities (id)
 );
+
 
 create index students_cities_id_index
     on students (city_id);
