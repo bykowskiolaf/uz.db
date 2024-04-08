@@ -1,0 +1,1 @@
+select name from product where name like 'a%' or name like 'b%' or name like 'c%' order by name desc;

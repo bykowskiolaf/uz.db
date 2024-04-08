@@ -1,0 +1,1 @@
+select curdate() as 'current_date', curtime() as 'current_time', utc_timestamp as 'current_timestamp';

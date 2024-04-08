@@ -1,0 +1,1 @@
+select first_name, last_name, commission_pct from emp where commission_pct is not null;

@@ -1,0 +1,1 @@
+select name,credit_rating from customer where credit_rating = 'GOOD';
